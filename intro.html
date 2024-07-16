@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>박은채</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
+
+        * {
+            font-family: "IBM Plex Sans KR", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        .myimg {
+            text-align: center;
+            margin: 80px auto 20px auto;
+        }
+
+        .myimg_card {
+            width: 250px;
+            height: 250px;
+            border-radius: 200px;
+        }
+
+        .mytitle {
+            color: white;
+
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            margin-bottom: 40px;
+        }
+
+        .mytitle>h4 {
+            margin-top: 10px;
+        }
+
+        .mytitle>button {
+            margin-left: 10px;
+            border-radius: 20px;
+        }
+
+        .list-group-item {
+            text-align: center;
+            color: white;
+            background-color: #0f0f0f;
+        }
+
+        .card {
+            text-align: center;
+            color: white;
+            background-color: #0f0f0f;
+
+            margin: 50px auto 80px auto;
+            padding: 80px;
+        }
+
+        .card_title {
+            font-size: 30px;
+        }
+
+    </style>
+</head>
+
+<body style="background-color: #0f0f0f;">
+    <div class="myimg">
+        <img class="myimg_card" src="sadness.png" alt="sadness" />
+    </div>
+    <div class="mytitle">
+        <h4>@박은채</h4>
+        <button type="button" class="btn btn-light"
+            onclick="location.href = 'https://amber-park.tistory.com/'">Blog</button>
+    </div>
+    <div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">• INTJ 💭</li>
+            <li class="list-group-item">• 패션, 제빵 직종만 경험 한 완전 비전공자 💻</li>
+            <li class="list-group-item">• 캐나다 4년 거주, 하지만 영어 못함 🇨🇦</li>
+            <li class="list-group-item">• 주 5일 운동 가는 헬린이 🏋️‍♀️</li>
+            <li class="list-group-item">• 락 밴드 좋아합니다 ! 🩵</li>
+        </ul>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(2, 1fr);">
+        <div class="card">
+            <p class="card_title"> ✔️ 장점 </p>
+            상대방에 대한 공감 능력이 뛰어나고, 의견 차이가 있더라도 소통으로 이해하려고 하는 노력을 잘 합니다 !
+        </div>
+        <div class="card">
+            <p class="card_title"> 🚩 협업 스타일 </p>
+            저의 장점을 살려서 상대방의 의견 존중도 하고 공감도 하면서, 제 의견을 어필합니다.
+        </div>
+    </div>
+    
+</body>
+
+</html>
