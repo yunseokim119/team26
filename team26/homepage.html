@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>26조</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/41356e6718.js" crossorigin="anonymous"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Black+Han+Sans&family=Do+Hyeon&family=Jua&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
+
+        * {
+            font-family: "IBM Plex Sans KR", sans-serif;
+            font-weight: 300;
+            font-style: normal;
+        }
+
+        body {
+            background: linear-gradient(to bottom, #0c2d7f 20%, #000066 40%, #000000);            
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white;
+            min-width: 320px;
+            min-height: 500px;
+            background-attachment: fixed;
+        }
+        /* 창 최소화 제한걸어둠 */
+        @media screen and (max-width: 320px) {
+            body {
+                min-width: 320px;
+            }
+        }
+
+        @media screen and (max-height: 500px) {
+            body {
+                min-height: 500px;
+            }
+        }
+        /* 배너css */
+        .banner {
+            background-color: green;
+            color: white;
+            text-align: center;
+            height: 20vh;
+            width: 80%;
+            background-image: url('일러스트2.png');
+            background-position: center;
+            background-size: cover;
+            border-radius: 8px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 20px auto;
+        }
+
+        .banner > p {
+            margin-top: 15px;
+            transform: rotate(350deg);
+        }
+        /* 단체프로필css */
+        .profile {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .profile img {
+            width: 20vw;
+            height: 20vw;
+            max-width: 150px;
+            max-height: 150px;
+            min-width: 150px;
+            min-height: 150px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-info {
+            text-align: left;
+            font-size: 1rem;
+            margin-left: 20px;
+            user-select: none;
+        }
+
+        .profile-info p {
+            margin: 5px 0 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .banner {
+                width: 100%;
+            }
+
+            .profile {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .profile img {
+                margin: 20px 0;
+            }
+
+            .profile-info {
+                text-align: center;
+                margin-left: 0;
+            }
+        }
+        /* detail페이지css */
+        .intro {
+            padding: 3px;
+            margin-top: 60px;
+            margin-left: 60px;
+        }
+
+        .divider {
+            height: 1px;
+            background-color: #cccccc20;
+            margin: 10px 40px 0 40px;
+        }
+
+        .gallery {
+            text-align: center;
+            margin: 50px auto 80px auto;
+        }
+
+        .gallery img {
+            width: 18%;
+            height: auto;
+            cursor: pointer;
+        }
+
+        .img {
+            border-radius: 20px;
+        }
+        /* 모달창css */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            background-color: black;
+            padding: 20px;
+            color: white;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+        }
+        /* 검색창css */
+        .search_box {
+            height: 40px;
+            width: 80%;
+            max-width: 600px;
+            background: #ffffff00;
+            border-radius: 40px;
+            padding: 10px;
+            border: 1px solid #595959;
+            margin: 20px 0;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .search_txt {
+            border: none;
+            background: none;
+            outline: none;
+            padding: 0px;
+            color: white;
+            font-size: 15px;
+            line-height: 13px;
+            width: 100%;
+            max-width: 550px;
+            background-color: #ffffff00;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .search_btn {
+            color: gray;
+            width: 15px;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #ffffff00;
+            border: none;
+            font-size: 16px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 600px) {
+            .search_box {
+                width: 90%;
+            }
+
+            .search_txt {
+                width: 80%;
+            }
+        }
+    
+        .content-section {
+            display: none;
+        }
+
+        .myimg {
+            text-align: center;
+            margin: auto auto 30px auto;
+            user-select: none;
+        }
+
+        .myimg_card {
+            width: 250px;
+            height: 250px;
+            border-radius: 200px;
+            user-select: none;
+        }
+
+        .mytitle {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            user-select: none;
+        }
+
+        .mytitle > button {
+            border-radius: 20px;
+            user-select: none;
+        }
+
+        .detail {
+            text-align: center;
+            user-select: none;
+        }
+
+        .card {
+            margin-top: 50px;
+            user-select: none;
+        }
+
+        .bold-text {
+            font-weight: bold;
+            user-select: none;
+        }
+
+        @media screen and (max-width: 600px) {
+            .profile-info h3 {
+                font-size: 1.2em;
+            }
+
+            .profile-info p {
+                font-size: 0.8em;
+            }
+        }
+
+        .no-select {
+            user-select: none;
+        }
+        
+        /* 사이드바css */
+        
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 80px;
+            background-color: rgba(53, 53, 53, 0);
+            position: fixed;
+            height: 100%;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: width 0.3s;
+            z-index: 1;
+        }
+
+        li a {
+            width: 100%;
+            display: block;
+            justify-content: center;
+            align-items: center;
+            background-color: #35353500;
+            color: white;
+            padding: 16px;
+            text-decoration: none;
+            text-align: center;
+            font-size: smaller;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        li a.active {
+            background-color: rgba(53, 53, 53, 0);
+            color: white;
+            text-align: center;
+        }
+
+        li a:hover:not(.active) {
+            background-color: gray;
+            color: white;
+            border-radius: 10px;
+        }
+        
+        .content {
+            margin-left: 80px;
+            padding: 16px;
+            flex-grow: 1;
+        }
+
+        @media (max-width: 600px) {
+            ul {
+                width: 30px;
+            }
+
+            .content {
+                margin-left: 30px;
+            }
+        }
+        .search_container {
+            display: flex;
+            align-items: center;
+            justify-content: center; 
+            margin: 20px auto;
+        }
+                
+        .logo {
+            height: 30px; 
+            margin-right: 10px; 
+        }
+        
+        
+    </style>
+    <!-- 모달창 스크립트 -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var modal = document.getElementById("modal");
+            var modalContent = document.getElementById("modal-content");
+            var close = document.getElementsByClassName("close")[0];
+            var thumbnails = document.getElementsByClassName("thumbnail");
+
+            for (var i = 0; i < thumbnails.length; i++) {
+                thumbnails[i].addEventListener("click", function () {
+                    var contentId = this.getAttribute("data-full");
+                    var content = document.getElementById(contentId).innerHTML;
+                    modalContent.innerHTML = content;
+                    modal.style.display = "block";
+                });
+            }
+
+            close.addEventListener("click", function () {
+                modal.style.display = "none";
+            });
+
+            window.addEventListener("click", function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            });
+
+            window.addEventListener("keydown", function (event) {
+                if (event.key === "Escape") {
+                    modal.style.display = "none";
+                }
+            });
+        });
+    </script>
+</head>
+
+<body> 
+    <!-- 사이드 네비게이션바 -->
+    <div class="navigation_bar">
+        <ul>
+            <li><a class="active" href="#"><img src="icon/menu-burger.png" style="max-width: 100%; height: auto; margin: auto;" alt="..."></a></li>
+            <li><a href="#"><img src="icon/home.png" style="max-width: 100%; height: auto; margin: auto; display: block;" alt="...">홈</a></li>
+            <li><a href="#"><img src="icon/flash.png" style="max-width: 100%; height: auto; margin: auto; display: block;" alt="...">shorts</a></li>
+            <li><a href="#"><img src="icon/youtube.png" style="max-width: 100%; height: auto; margin: auto; display: block;" alt="...">구독</a></li>
+            <li><a href="#"><img src="icon/soundtrack.png" style="max-width: 100%; height: auto; margin: auto; display: block;" alt="...">YouTube Music</a></li>
+            <li><a href="#"><img src="icon/video.png" style="max-width: 100%; height: auto; margin: auto; display: block;" alt="...">나</a></li>
+            <li><a href="#"><img src="icon/download.png" style="max-width: 100%; height: auto; margin: auto; display: block;" alt="...">오프라인 저장</a></li>
+        </ul>
+    </div>
+    
+    <div class="content">
+    
+        
+        <!-- 검색창 -->
+        <div class="search_container">
+            <img class="logo" src="logo1.png" alt="로고" class="logo">
+            <form class="search_box" action="" method="get">
+                
+                <input class="search_txt" type="text" name="" placeholder="검색">
+                <button class="search_btn" type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+        </div>
+        <!-- 배너 -->
+        <div class="banner">
+            <p class="no-select" style="font-family: 'Bagel Fat One', system-ui; font-size: 40px">오늘부터<br>코린이</p>
+        </div>
+        <div class="profile">
+            <img src="profile.png" alt="프로필 사진">
+            <div class="profile-info">
+                <h5><p class="bold-text">팀 규칙</p></h5>
+                <P>• 매일 오전 하루 일정 계획 회의&emsp; • 오류 사항, 진척도 틈틈이 공유</P>
+                <P>• 일정 생길 시 미리 공지&emsp; • 서로의 의견 존중&emsp; • 존댓말 사용</P>
+                <br>
+                <h5><p class="bold-text">팀 목표</p></h5>
+                <p>• 초보자에서 벗어나 상급자 되기&emsp; • 오늘부터 코린이 —> 오늘부터 개발자</p>
+            </div>
+        </div>
+        <!-- 조원소개페이지 -->
+        <div class="intro">
+            <h3 class="no-select">조원 소개</h3>
+        </div>
+        <div class="divider"></div>
+        <div class="gallery">
+            <img class="img thumbnail" src="detail/1.jpg" alt="사진 1" data-full="content1">
+            <img class="img thumbnail" src="detail/2.jpg" alt="사진 2" data-full="content2">
+            <img class="img thumbnail" src="detail/3.jpg" alt="사진 3" data-full="content3">
+            <img class="img thumbnail" src="detail/4.jpg" alt="사진 4" data-full="content4">
+            <img class="img thumbnail" src="detail/5.jpg" alt="사진 5" data-full="content5">
+        </div>
+        <!-- 모달창구현 -->
+        <div id="modal" class="modal">
+            <span class="close">&times;</span>
+            <div class="modal-content" id="modal-content">
+                <div id="caption"></div>
+            </div>
+        </div>
+    </div>
+    <!-- 이시우 프로필 -->
+    <div id="content1" class="content-section">
+        <div class="myimg">
+            <img class="myimg_card" src="detail/dang.png" alt="당황이">
+        </div>
+        <div class="mytitle">
+            <h4>@이시우</h4>
+            <button type="button" class="btn btn-light" style="margin-left: 20px; background-color: pink; border: none;" onclick="location.href='https://vir8467.tistory.com/'">Blog</button>
+        </div>
+        <div class="detail">
+            <h2 style="color: pink;">ABOUT ME</h2>
+            <p class="bold-text">• 장점</p>
+            <p>매사에 신중한 편</p>
+            <p>자기 반성의 화신</p>
+            <p class="bold-text">• 협업스타일</p>
+            <p>보통은 남의 의견을 들어주는 편<br>확실하게 아는 주제가 나오면 적극적으로 의견을 피력하기도 함</p>
+            <p class="bold-text">• TMI</p>
+            <p>최근 빵에 맛을 들여 빵만 먹는 중</p>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <div class="card" style="background-color: black;">
+                    <h4 class="card_title" style="color: pink;">MBTI</h4>
+                    <p style="color: white;">INTJ</p>
+                </div>
+                <div class="card" style="background-color: black;">
+                    <h4 class="card_title" style="color: pink;">HOBBY</h4>
+                    <p style="color: white;">주말에는 주로 영화를 보거나 유투브 탐방<br>휴가때는 여행을 가는 편</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 김윤서 프로필 -->
+    <div id="content2" class="content-section">
+        <div class="myimg">
+            <img class="myimg_card" src="detail/chil.png" alt="Kkachil">
+        </div>
+        <div class="mytitle">
+            <h4>@김윤서</h4>
+            <button type="button" class="btn btn-light" style="margin-left: 20px; background-color: yellowgreen; border: none;" onclick="location.href='https://velog.io/@yunseokim119/posts'">Blog</button>
+        </div>
+        <div class="detail">
+            <h2 style="color: yellowgreen;">ABOUT ME</h2>
+            <p class="bold-text">• 장점</p>
+            <p>끈기있고 책임감이 강한 성격</p>
+            <p class="bold-text">• 협업스타일</p>
+            <p>빠른 피드백, 원활한 소통, 적극적으로</p>
+            <p class="bold-text">• TMI</p>
+            <p>다음주에 기사시험있는데 큰일났습니다...</p>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <div class="card" style="background-color: black;">
+                    <h4 class="card_title" style="color: yellowgreen;">MBTI</h4>
+                    <p style="color: white;">ESTP</p>
+                </div>
+                <div class="card" style="background-color: black;">
+                    <h4 class="card_title" style="color: yellowgreen;">HOBBY</h4>
+                    <p style="color: white;">카페가기<br>콘서트 보러가기<br>강아지랑 산책하기</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 전우성 프로필 -->
+    <div id="content3" class="content-section">
+        <div class="myimg">
+            <img class="myimg_card" src="detail/앵그리.jfif" alt="앵그리">
+        </div>
+        <div class="mytitle">
+            <h4>@전우성</h4>
+            <button type="button" class="btn btn-light" style="margin-left: 20px; background-color: orangered; border: none;" onclick="location.href='https://blog.naver.com/zeno9302'">Blog</button>
+        </div>
+        <div class="detail">
+            <h2 style="color: orangered;">ABOUT ME</h2>
+            <p class="bold-text">• 장점</p>
+            <p>매사에 열정적으로 참여하고 친절하게 다가갈수있는 성격</p>
+            <p>의견을 낼수있고 다른의견을 포용할수있는 마인드</p>
+            <p>어릴때 부터 운동하고 커서도 공부를 잘 안해서 공부하는 습관 드는게 힘듭니다.<br>그래도 열심히 해보겠습니다</p>
+            <p class="bold-text">• 좌우명</p>
+            <p>너의 길을 걸어가라 남들이 뭐라하던 내버려둬라. (단테)</p>
+            <p class="bold-text">• TMI</p>
+            <p>요새 일본노래를 즐겨 듣고있습니다.</p>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <div class="card" style="background-color: black;">
+                    <h4 class="card_title" style="color: orangered;">MBTI</h4>
+                    <p style="color: white;">ENFP / INFP</p>
+                </div>
+                <div class="card" style="background-color: black;">
+                    <h4 class="card_title" style="color: orangered;">HOBBY</h4>
+                    <p style="color: white;">축구 및 풋살즐겨하고있고 게임도 가끔씩 즐겨하고있습니다.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 박은채 프로필 -->
+    <div id="content4" class="content-section">
+        <div class="myimg">
+            <img class="myimg_card" src="detail/an.png" alt="anxiety">
+        </div>
+        <div class="mytitle">
+            <h4>@박은채</h4>
+            <button type="button" class="btn btn-light" style="margin-left: 20px; background-color: orange; border: none;" onclick="location.href='https://amber-park.tistory.com/'">Blog</button>
+        </div>
+        <div class="detail">
+            <h2 style="color: orange;">ABOUT ME</h2>
+            <p class="bold-text">• 장점</p>
+            <p>상대방에 대한 공감 능력<br> 의견 차이가 있더라도 소통으로 이해하려고 하는 노력</p>
+            <p class="bold-text">• 협업 스타일</p>
+            <p>저의 장점을 살려서 상대방의 의견 존중, 공감도 하면서 제 의견을 어필</p>
+            <p class="bold-text">• TMI</p>
+            <p>저는 주로 패션, 제빵 관련 쪽에만 접해온 비전공자<br>캐나다에서 영주권을 목표로 4년동안 거주 했지만 영어는 꽤나 못합니다 !</p>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); justify-items: center;">
+                <div class="card" style="background-color: black; text-align: center;">
+                    <h4 class="card_title" style="color: orange;">MBTI</h4>
+                    <p style="color: white;">INTJ</p>
+                </div>
+                <div class="card" style="background-color: black; text-align: center;">
+                    <h4 class="card_title" style="color: orange;">HOBBY</h4>
+                    <p style="color: white;">웨이트 • 야구 시청 • 만화책 보기</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 한  강 프로필 -->
+    <div id="content5" class="content-section">
+        <div class="myimg">
+            <img class="myimg_card" src="detail/sad.jpg" alt="sadness">
+        </div>
+        <div class="mytitle">
+            <h4>@한 강</h4>
+            <button type="button" class="btn btn-light" style="margin-left: 20px; background-color: skyblue; border: none;" onclick="location.href='https://velog.io/@uara67/posts'">Blog</button>
+        </div>
+        <div class="detail">
+            <h2 style="color: skyblue;">ABOUT ME</h2>
+            <p class="bold-text">• 장점</p>
+            <p>신속한 문제해결 능력 보유자</p>
+            <p>낯선 환경에도 빠르게 적응하는 무던한 성격</p>
+            <p class="bold-text">• 협업스타일</p>
+            <p>소통중시, 빠른 결정, 피드백 빠르게</p>
+            <p class="bold-text">• TMI</p>
+            <p>살찐 고양이랑 사는 중</p>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr);">
+                <div class="card" style="background-color: black;">
+                    <h4 class="card_title" style="color: skyblue;">MBTI</h4>
+                    <p style="color: white;">INTP</p>
+                </div>
+                <div class="card" style="background-color: black;">
+                    <h4 class="card_title" style="color: skyblue;">HOBBY</h4>
+                    <p style="color: white;">게임, 유튜브보기, 그림</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
